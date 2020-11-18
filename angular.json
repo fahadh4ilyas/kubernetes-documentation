@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -124,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "kubernetes-documentation"
+  "defaultProject": "kubernetes-documentation",
+  "cli": {
+    "analytics": "c169f0d9-de99-4b45-b143-6c2f711fb633"
+  }
 }

@@ -1,0 +1,29 @@
+#sidebarMenucontainer {
+    position: fixed;
+    top: 56px;
+    z-index: 100;
+}
+
+@media (min-width: 768px) {
+    #sidebarMenucontainer {
+        position: sticky;
+        top: 56px;
+        height: calc(100vh - 56px);
+        z-index: 100;
+    }
+}
+
+#sidebarMenu {
+    max-height: calc(100vh - 56px);
+    overflow-y: auto;
+}
+
+@media (min-width: 992px) {
+    #fragmentMenu {
+        position: sticky;
+        top: 56px;
+        height: calc(100vh - 56px);
+        z-index: 100;
+        overflow-y: auto;
+    }
+}
