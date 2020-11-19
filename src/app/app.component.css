@@ -37,3 +37,15 @@
         z-index: 1020;
     }
 }
+
+@media (min-width: 1460px) {
+    .col-xxl-2 {
+        flex: 0 0 16.666667%;
+        max-width: 16.666667%;
+    }
+
+    .col-xxl-10 {
+        flex: 0 0 83.333333%;
+        max-width: 83.333333%;
+    }
+}
