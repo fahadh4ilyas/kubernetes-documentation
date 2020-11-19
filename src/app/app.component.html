@@ -13,7 +13,7 @@
       </div>
       <nav id="sidebarMenu" [ngbCollapse]="isCollapsed" id="sidebarMenu" class="w-md-auto d-md-block border collapse">
         <ul class="navbar-nav">
-          <li *ngFor="let nav of navs" class="nav-item" routerLinkActive="active bg-secondary" [routerLinkActiveOptions]="{exact: true}"><a [class]="nav.class" [innerHTML]="nav.text" [routerLink]="nav.url" [fragment]="nav.fragment" routerLinkActive="active text-white font-weight-bold" [routerLinkActiveOptions]="{exact: true}" class="nav-link h6 p-0 my-1"></a></li>
+          <li *ngFor="let nav of navs" class="nav-item" routerLinkActive="bg-secondary" [routerLinkActiveOptions]="{exact: true}"><a [class]="nav.class" [innerHTML]="nav.text" [routerLink]="nav.url" [fragment]="nav.fragment" routerLinkActive="text-white" [routerLinkActiveOptions]="{exact: true}" [class.font-weight-bold]="(currentUrl+'#'+currentFragment) == (nav.url.join('/')+'#'+nav.fragment)" [class.active]="(currentUrl+'#'+currentFragment) == (nav.url.join('/')+'#'+nav.fragment)" class="nav-link h6 p-0 my-1"></a></li>
         </ul>
       </nav>
     </div>

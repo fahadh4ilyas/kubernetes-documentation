@@ -6,8 +6,8 @@
     <img src="assets/images/lens-cluster-settings.png" referrerpolicy="no-referrer" alt="Lens-cluster-settings" title="Lens Cluster Settings"></p><p><span>Gulir ke bawah sampai menemukan menu </span><strong><code>metrics</code></strong><span> di dalam menu </span><strong><code>Features</code></strong><span> dan tekan tombol </span><strong><code>Install</code></strong><span> dan tunggu hingga hasilnya seperti berikut</span>
     <img src="assets/images/lens-install-metrics.png" referrerpolicy="no-referrer" alt="Lens-install-metrics" title="Lens Install Metrics"></p>
     <div class="d-flex flex-column flex-md-row align-items-md-stretch justify-content-md-around prev-next-bottom">
-        <a [routerLink]="bottomLink['left']['url']" [class.left-prev]="bottomLink['left']['url']" [innerHTML]="bottomLink['left']['text']" class="align-self-start align-self-md-stretch"></a>
-        <a [routerLink]="bottomLink['center']['url']" [class.center-home]="bottomLink['center']['url']" [innerHTML]="bottomLink['center']['text']" class="align-self-center align-self-md-stretch"></a>
-        <a [routerLink]="bottomLink['right']['url']" [class.right-next]="bottomLink['right']['url']" [innerHTML]="bottomLink['right']['text']" class="align-self-end align-self-md-stretch"></a>
+        <a [routerLink]="bottomLink['left']['url']" [class.left-prev]="bottomLink['left']['url'].length > 0" [innerHTML]="bottomLink['left']['text']" class="align-self-start align-self-md-stretch"></a>
+        <a [routerLink]="bottomLink['center']['url']" [class.center-home]="bottomLink['center']['url'].length > 0" [innerHTML]="bottomLink['center']['text']" class="align-self-center align-self-md-stretch"></a>
+        <a [routerLink]="bottomLink['right']['url']" [class.right-next]="bottomLink['right']['url'].length > 0" [innerHTML]="bottomLink['right']['text']" class="align-self-end align-self-md-stretch"></a>
     </div>
 </div>

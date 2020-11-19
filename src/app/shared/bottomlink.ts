@@ -1,6 +1,6 @@
 export interface urlName {
-    url: string | string[];
-    fragment?: string;
+    url: string[];
+    fragment: string;
     text: string;
     class?: string;
 }

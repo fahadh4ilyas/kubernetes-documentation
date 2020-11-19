@@ -8,11 +8,13 @@ interface bottomlinks {
 export const BOTTOMLINKS: bottomlinks = {
     "home": {
         "left": {
-            "url": "",
+            "url": [],
+            "fragment": "",
             "text": "",
         },
         "center": {
             "url": ["../"],
+            "fragment": "",
             "text": "Fahadh's Documentation",
         },
         "right": SIDENAVS[1]
@@ -111,7 +113,8 @@ export const BOTTOMLINKS: bottomlinks = {
         "left": SIDENAVS[27],
         "center": SIDENAVS[0],
         "right": {
-            "url": "",
+            "url": [],
+            "fragment": "",
             "text": "",
         }
     },
