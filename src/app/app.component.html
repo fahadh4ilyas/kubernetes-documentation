@@ -4,7 +4,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div id="sidebarMenucontainer" class="w-md-auto p-0 col-md-3 col-xxl-2 d-block bg-light">
+    <div id="sidebarMenucontainer" class="w-md-auto p-0 col-md-4 col-lg-3 col-xxl-2 d-block bg-light">
       <div id="brand" class="p-0 d-flex align-items-center border">
         <a routerLink="/" class="text-decoration-none text-center font-weight-bold h3 m-0 flex-fill">Kubernetes Documentation</a>
         <button class="navbar-light navbar-toggler d-md-none collapsed align-self-end" type="button" (click)="isCollapsed=!isCollapsed" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,7 +17,7 @@
         </ul>
       </nav>
     </div>
-    <div id="content" class="col-md-9 col-xxl-10 p-0">
+    <div id="content" class="col-md-8 col-lg-9 col-xxl-10 p-0">
       <router-outlet></router-outlet>
     </div>
   </div>
