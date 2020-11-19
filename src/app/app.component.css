@@ -1,21 +1,63 @@
+.navbar-brand {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 #sidebarMenucontainer {
     position: fixed;
-    top: 58px;
+    top: 98px;
     z-index: 100;
 }
 
 #brand {
-    position: relative;
+    position: sticky;
+    top: 98px;
 }
 
 #sidebarMenu {
     top: 66px;
-    max-height: calc(100vh - 42px - 58px);
+    max-height: calc(100vh - 66px - 98px);
     overflow-y: auto;
 }
 
 #sidebarMenu a:hover, #sidebarMenu a:focus {
     font-weight: 700!important;
+}
+
+#content {
+    top: 66px;
+}
+
+@media (min-width: 383px) {
+
+    #sidebarMenucontainer {
+        top: 58px;
+    }
+
+    #sidebarMenu {
+        top: 66px;
+        max-height: calc(100vh - 66px - 58px);
+    }
+
+    #content {
+        top: 66px;
+    }
+
+    #brand {
+        top: 58px;
+    }
+}
+
+@media (min-width: 446px) {
+    #sidebarMenu {
+        top: 42px;
+        max-height: calc(100vh - 42px - 58px);
+    }
+
+    #content {
+        top: 42px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -31,10 +73,13 @@
     }
 
     #brand {
-        position: sticky;
         height: 66px;
         top: 58px;
         z-index: 1020;
+    }
+
+    #content {
+        top: 0;
     }
 }
 
