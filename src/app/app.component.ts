@@ -10,6 +10,7 @@ import { SIDENAVS } from './shared/sidenavs';
 export class AppComponent {
   title = 'kubernetes-documentation';
 
+  isNavbarCollapse = true;
   isCollapsed = true;
 
   navs = SIDENAVS.slice(1);
