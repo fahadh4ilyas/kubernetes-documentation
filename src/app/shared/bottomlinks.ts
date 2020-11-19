@@ -12,8 +12,8 @@ export const BOTTOMLINKS: bottomlinks = {
             "text": "",
         },
         "center": {
-            "url": "",
-            "text": "",
+            "url": ["../"],
+            "text": "Fahadh's Documentation",
         },
         "right": SIDENAVS[1]
     },
@@ -85,30 +85,30 @@ export const BOTTOMLINKS: bottomlinks = {
     "pods-controller": {
         "left": SIDENAVS[13],
         "center": SIDENAVS[0],
-        "right": SIDENAVS[15]
+        "right": SIDENAVS[17]
     },
     "service": {
         "left": SIDENAVS[14],
         "center": SIDENAVS[0],
-        "right": SIDENAVS[16]
-    },
-    "configuration": {
-        "left": SIDENAVS[15],
-        "center": SIDENAVS[0],
-        "right": SIDENAVS[17]
-    },
-    "storage": {
-        "left": SIDENAVS[16],
-        "center": SIDENAVS[0],
         "right": SIDENAVS[18]
     },
-    "pods-controller-ii": {
+    "configuration": {
         "left": SIDENAVS[17],
         "center": SIDENAVS[0],
-        "right": SIDENAVS[19]
+        "right": SIDENAVS[23]
+    },
+    "storage": {
+        "left": SIDENAVS[18],
+        "center": SIDENAVS[0],
+        "right": SIDENAVS[27]
+    },
+    "pods-controller-ii": {
+        "left": SIDENAVS[23],
+        "center": SIDENAVS[0],
+        "right": SIDENAVS[31]
     },
     "access-control": {
-        "left": SIDENAVS[18],
+        "left": SIDENAVS[27],
         "center": SIDENAVS[0],
         "right": {
             "url": "",

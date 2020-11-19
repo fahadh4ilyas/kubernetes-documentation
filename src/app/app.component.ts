@@ -11,5 +11,5 @@ export class AppComponent {
 
   isCollapsed = true;
 
-  navs = SIDENAVS;
+  navs = SIDENAVS.slice(1);
 }

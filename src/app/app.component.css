@@ -1,29 +1,39 @@
 #sidebarMenucontainer {
     position: fixed;
-    top: 56px;
+    top: 58px;
     z-index: 100;
+}
+
+#brand {
+    position: relative;
+}
+
+#sidebarMenu {
+    top: 66px;
+    max-height: calc(100vh - 42px - 58px);
+    overflow-y: auto;
+}
+
+#sidebarMenu a:hover, #sidebarMenu a:focus {
+    font-weight: 700!important;
 }
 
 @media (min-width: 768px) {
     #sidebarMenucontainer {
         position: sticky;
-        top: 56px;
-        height: calc(100vh - 56px);
+        top: 58px;
+        height: calc(100vh - 58px);
         z-index: 100;
     }
-}
 
-#sidebarMenu {
-    max-height: calc(100vh - 56px);
-    overflow-y: auto;
-}
+    #sidebarMenu {
+        max-height: calc(100vh - 66px - 58px);
+    }
 
-@media (min-width: 992px) {
-    #fragmentMenu {
+    #brand {
         position: sticky;
-        top: 56px;
-        height: calc(100vh - 56px);
-        z-index: 100;
-        overflow-y: auto;
+        height: 66px;
+        top: 58px;
+        z-index: 1020;
     }
 }

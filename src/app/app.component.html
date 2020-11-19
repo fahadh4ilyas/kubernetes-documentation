@@ -1,16 +1,19 @@
-<nav class="navbar navbar-dark bg-primary sticky-top flex-row-reverse">
-  <a routerLink="/" class="navbar-brand">Kubernetes Documentation</a>
-  <button class="navbar-toggler d-md-none collapsed" type="button" (click)="isCollapsed=!isCollapsed" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<nav class="navbar navbar-dark bg-dark sticky-top">
+  <a href="../" class="navbar-brand font-weight-bold"><img class="mr-2 mb-1" src="assets/brand/fahadh.png" width="20" height="20" alt="" loading="lazy">Fahadh's Documentation</a>
 </nav>
 
 <div class="container-fluid">
   <div class="row">
-    <div id="sidebarMenucontainer" class="w-md-auto p-0 col-md-3 d-md-block bg-light">
-      <nav id="sidebarMenu" [ngbCollapse]="isCollapsed" id="sidebarMenu" class="d-md-block collapse">
+    <div id="sidebarMenucontainer" class="w-md-auto p-0 col-md-3 d-block bg-light">
+      <div id="brand" class="p-0 d-flex align-items-center border">
+        <a routerLink="/" class="text-decoration-none text-center font-weight-bold h3 m-0 flex-fill">Kubernetes Documentation</a>
+        <button class="navbar-light navbar-toggler d-md-none collapsed align-self-end" type="button" (click)="isCollapsed=!isCollapsed" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <nav id="sidebarMenu" [ngbCollapse]="isCollapsed" id="sidebarMenu" class="w-md-auto d-md-block border collapse">
         <ul class="navbar-nav">
-          <li *ngFor="let nav of navs" class="nav-item" routerLinkActive="active bg-secondary" [routerLinkActiveOptions]="{exact: true}"><a [class]="nav.class" [innerHTML]="nav.text" [routerLink]="nav.url" [fragment]="nav.fragment" routerLinkActive="active text-white" [routerLinkActiveOptions]="{exact: true}" class="nav-link h6 p-0 my-1"></a></li>
+          <li *ngFor="let nav of navs" class="nav-item" routerLinkActive="active bg-secondary" [routerLinkActiveOptions]="{exact: true}"><a [class]="nav.class" [innerHTML]="nav.text" [routerLink]="nav.url" [fragment]="nav.fragment" routerLinkActive="active text-white font-weight-bold" [routerLinkActiveOptions]="{exact: true}" class="nav-link h6 p-0 my-1"></a></li>
         </ul>
       </nav>
     </div>

@@ -188,19 +188,19 @@ export const SIDENAVS: urlName[] = [
       class: "ml-5"
     },
     {
-      url: ["/dasar-kubernetes", "9-access-controller"],
+      url: ["/dasar-kubernetes", "9-access-control"],
       fragment: "",
       text: "9. Access Control",
       class: "ml-4"
     },
     {
-      url: ["/dasar-kubernetes", "9-access-controller"],
+      url: ["/dasar-kubernetes", "9-access-control"],
       fragment: "serviceaccount",
       text: "ServiceAccount",
       class: "ml-5"
     },
     {
-      url: ["/dasar-kubernetes", "9-access-controller"],
+      url: ["/dasar-kubernetes", "9-access-control"],
       fragment: "#role--rolebinding",
       text: "Role & RoleBinding",
       class: "ml-5"
