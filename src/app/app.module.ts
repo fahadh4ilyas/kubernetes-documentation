@@ -10,6 +10,7 @@ import { ApaItuKubernetesComponent } from './components/apa-itu-kubernetes/apa-i
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { TopNavbarComponent } from './components/top-navbar/top-navbar.component';
 import { SideNavbarComponent } from './components/side-navbar/side-navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SideNavbarComponent } from './components/side-navbar/side-navbar.compon
     ApaItuKubernetesComponent,
     PagenotfoundComponent,
     TopNavbarComponent,
-    SideNavbarComponent
+    SideNavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

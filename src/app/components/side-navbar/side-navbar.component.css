@@ -4,7 +4,7 @@
 }
 
 #sidebarMenu {
-    top: 66px;
+    position: relative;
     max-height: calc(100vh - 66px - 58px);
     overflow-y: auto;
 }
@@ -15,14 +15,12 @@
 
 @media (min-width: 446px) {
     #sidebarMenu {
-        top: 42px;
         max-height: calc(100vh - 42px - 58px);
     }
 }
 
 @media (min-width: 768px) {
     #brand {
-        height: 66px;
         top: 58px;
         z-index: 1020;
     }
