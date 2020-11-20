@@ -1,27 +1,16 @@
 #brand {
     position: sticky;
-    top: 98px;
+    top: 58px;
 }
 
 #sidebarMenu {
     top: 66px;
-    max-height: calc(100vh - 66px - 98px);
+    max-height: calc(100vh - 66px - 58px);
     overflow-y: auto;
 }
 
 #sidebarMenu a:hover, #sidebarMenu a:focus {
     font-weight: 700!important;
-}
-
-@media (min-width: 383px) {
-    #brand {
-        top: 58px;
-    }
-
-    #sidebarMenu {
-        top: 66px;
-        max-height: calc(100vh - 66px - 58px);
-    }
 }
 
 @media (min-width: 446px) {

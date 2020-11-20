@@ -1,17 +1,11 @@
 #sidebarMenucontainer {
     position: fixed;
-    top: 98px;
+    top: 58px;
     z-index: 100;
 }
 
 #content {
     top: 66px;
-}
-
-@media (min-width: 383px) {
-    #sidebarMenucontainer {
-        top: 58px;
-    }
 }
 
 @media (min-width: 446px) {
@@ -23,9 +17,7 @@
 @media (min-width: 768px) {
     #sidebarMenucontainer {
         position: sticky;
-        top: 58px;
         height: calc(100vh - 58px);
-        z-index: 100;
     }
 
     #content {
