@@ -4,10 +4,12 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HomeComponent } from './home/home.component';
-import { PendahuluanComponent } from './pendahuluan/pendahuluan.component';
-import { ApaItuKubernetesComponent } from './apa-itu-kubernetes/apa-itu-kubernetes.component';
-import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { HomeComponent } from './components/home/home.component';
+import { PendahuluanComponent } from './components/pendahuluan/pendahuluan.component';
+import { ApaItuKubernetesComponent } from './components/apa-itu-kubernetes/apa-itu-kubernetes.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { TopNavbarComponent } from './components/top-navbar/top-navbar.component';
+import { SideNavbarComponent } from './components/side-navbar/side-navbar.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     HomeComponent,
     PendahuluanComponent,
     ApaItuKubernetesComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    TopNavbarComponent,
+    SideNavbarComponent
   ],
   imports: [
     BrowserModule,

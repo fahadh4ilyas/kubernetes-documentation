@@ -1,43 +1,9 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-  <a href="../" class="navbar-brand font-weight-bold"><img class="mr-2 mb-1" src="assets/brand/fahadh.png" width="20" height="20" alt="" loading="lazy">Fahadh's Documentation</a>
-  <button class="navbar-toggler" type="button" (click)="isNavbarCollapse = !isNavbarCollapse" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isNavbarCollapse">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="../">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="../about">About Me</a>
-      </li>
-      <li class="nav-item" ngbDropdown>
-        <a class="nav-link" ngbDropdownToggle id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Documentation
-        </a>
-        <div class="bg-dark border-0" ngbDropdownMenu aria-labelledby="navbarDropdown">
-          <a class="nav-link" ngbDropdownItem routerLink="/" routerLinkActive="active bg-secondary text-white font-weight-bold">Kubernetes Documentation</a>
-        </div>
-      </li>
-    </ul>
-  </div>
-</nav>
+<app-top-navbar></app-top-navbar>
 
 <div class="container-fluid">
   <div class="row">
     <div id="sidebarMenucontainer" class="w-md-auto p-0 col-md-4 col-lg-3 col-xxl-2 d-block bg-light">
-      <div id="brand" class="p-0 d-flex align-items-center border">
-        <a routerLink="/" class="text-decoration-none text-center font-weight-bold h3 m-0 flex-fill">Kubernetes Documentation</a>
-        <button class="navbar-light navbar-toggler d-md-none collapsed align-self-end" type="button" (click)="isCollapsed=!isCollapsed" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-      <nav id="sidebarMenu" [ngbCollapse]="isCollapsed" id="sidebarMenu" class="w-md-auto d-md-block border collapse">
-        <ul class="navbar-nav">
-          <li *ngFor="let nav of navs" class="nav-item" routerLinkActive="bg-secondary" [routerLinkActiveOptions]="{exact: true}" [class.active]="(currentUrl+'#'+currentFragment) == (nav.url.join('/')+'#'+nav.fragment)"><a (click)="isCollapsed=true" [class]="nav.class" [innerHTML]="nav.text" [routerLink]="nav.url" [fragment]="nav.fragment" routerLinkActive="text-white" [routerLinkActiveOptions]="{exact: true}" [class.font-weight-bold]="(currentUrl+'#'+currentFragment) == (nav.url.join('/')+'#'+nav.fragment)"  class="nav-link h6 p-0 my-1"></a></li>
-        </ul>
-      </nav>
+      <app-side-navbar></app-side-navbar>
     </div>
     <div id="content" class="col-md-8 col-lg-9 col-xxl-10 p-0">
       <router-outlet></router-outlet>

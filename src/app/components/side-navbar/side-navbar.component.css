@@ -1,0 +1,44 @@
+#brand {
+    position: sticky;
+    top: 98px;
+}
+
+#sidebarMenu {
+    top: 66px;
+    max-height: calc(100vh - 66px - 98px);
+    overflow-y: auto;
+}
+
+#sidebarMenu a:hover, #sidebarMenu a:focus {
+    font-weight: 700!important;
+}
+
+@media (min-width: 383px) {
+    #brand {
+        top: 58px;
+    }
+
+    #sidebarMenu {
+        top: 66px;
+        max-height: calc(100vh - 66px - 58px);
+    }
+}
+
+@media (min-width: 446px) {
+    #sidebarMenu {
+        top: 42px;
+        max-height: calc(100vh - 42px - 58px);
+    }
+}
+
+@media (min-width: 768px) {
+    #brand {
+        height: 66px;
+        top: 58px;
+        z-index: 1020;
+    }
+
+    #sidebarMenu {
+        max-height: calc(100vh - 66px - 58px);
+    }
+}
