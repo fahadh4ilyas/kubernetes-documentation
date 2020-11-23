@@ -1,10 +1,4 @@
-#brand {
-    position: sticky;
-    top: 58px;
-}
-
 #sidebarMenu {
-    position: relative;
     max-height: calc(100vh - 66px - 58px);
     overflow-y: auto;
 }
@@ -21,7 +15,6 @@
 
 @media (min-width: 768px) {
     #brand {
-        top: 58px;
         z-index: 1020;
     }
 

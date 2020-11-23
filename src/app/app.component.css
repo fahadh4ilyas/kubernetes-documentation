@@ -1,33 +1,6 @@
-.footer {
-    position: relative;
-    flex-basis: 100%;
-}
-
 #sidebarMenucontainer {
-    position: fixed;
     top: 58px;
     z-index: 100;
-}
-
-#content {
-    top: 66px;
-}
-
-@media (min-width: 446px) {
-    #content {
-        top: 42px;
-    }
-}
-
-@media (min-width: 768px) {
-    #sidebarMenucontainer {
-        position: sticky;
-        height: 100%;
-    }
-
-    #content {
-        top: 0;
-    }
 }
 
 @media (min-width: 1460px) {
