@@ -13,9 +13,9 @@ export const BOTTOMLINKS: bottomlinks = {
             "text": "",
         },
         "center": {
-            "url": ["../"],
+            "url": [],
             "fragment": "",
-            "text": "Fahadh's Documentation",
+            "text": "",
         },
         "right": SIDENAVS[1]
     },
