@@ -27,7 +27,7 @@ export class SideNavbarComponent implements OnInit {
       }
     );
     this._activatedRoute.fragment.subscribe(
-      fragment => this.currentFragment = fragment || ""
+      fragment => this.currentFragment = fragment
     );
   }
 
