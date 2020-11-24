@@ -8,9 +8,7 @@ import { BOTTOMLINKS } from './bottomlinks';
 })
 export class BottomlinkService {
 
-  bottomLinks = BOTTOMLINKS;
-
-  currentBottomLink!: bottomLink;
+  currentBottomLink: bottomLink = BOTTOMLINKS["home"];
 
   bottomLinkChange: Subject<bottomLink> = new Subject<bottomLink>();
 
