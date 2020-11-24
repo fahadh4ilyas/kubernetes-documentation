@@ -9,12 +9,10 @@ export const BOTTOMLINKS: bottomlinks = {
     "home": {
         "left": {
             "url": [],
-            "fragment": "",
             "text": "",
         },
         "center": {
             "url": [],
-            "fragment": "",
             "text": "",
         },
         "right": SIDENAVS[1]
