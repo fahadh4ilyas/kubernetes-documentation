@@ -201,7 +201,7 @@ export const SIDENAVS: urlName[] = [
     },
     {
       url: ["/dasar-kubernetes", "9-access-control"],
-      fragment: "#role--rolebinding",
+      fragment: "role--rolebinding",
       text: "Role & RoleBinding",
       class: "ml-5"
     }
