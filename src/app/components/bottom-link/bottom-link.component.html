@@ -1,0 +1,5 @@
+<div class="d-flex flex-column flex-md-row justify-content-md-around prev-next-bottom text-center pb-3">
+    <a [routerLink]="bottomLink['left']['url']" [class.left-prev]="bottomLink['left']['url'].length > 0" [innerHTML]="bottomLink['left']['text']"></a>
+    <a [routerLink]="bottomLink['center']['url']" [class.center-home]="bottomLink['center']['url'].length > 0" [innerHTML]="bottomLink['center']['text']"></a>
+    <a [routerLink]="bottomLink['right']['url']" [class.right-next]="bottomLink['right']['url'].length > 0" [innerHTML]="bottomLink['right']['text']"></a>
+</div>

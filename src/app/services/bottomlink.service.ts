@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
+import { bottomLink } from './bottomlink';
 import { BOTTOMLINKS } from './bottomlinks';
 
 @Injectable({
@@ -8,9 +10,17 @@ export class BottomlinkService {
 
   bottomLinks = BOTTOMLINKS;
 
-  constructor() { }
+  currentBottomLink!: bottomLink;
+
+  bottomLinkChange: Subject<bottomLink> = new Subject<bottomLink>();
+
+  constructor() {
+    this.bottomLinkChange.subscribe(
+      val => this.currentBottomLink = val
+    )
+   }
 
   getbottomLink(type: string) {
-    return BOTTOMLINKS[type];
+    this.bottomLinkChange.next(BOTTOMLINKS[type]);
   }
 }

@@ -10,14 +10,12 @@ import { BottomlinkService } from 'src/app/services/bottomlink.service';
 })
 export class PodsControllerComponent implements OnInit {
 
-  bottomLink!: bottomLink;
-
   constructor(private _title: Title,
     private _bottomLinkService: BottomlinkService) { }
 
   ngOnInit(): void {
     this._title.setTitle('4. Pods Controller');
-    this.bottomLink = this._bottomLinkService.getbottomLink("pods-controller");
+    this._bottomLinkService.getbottomLink("pods-controller");
   }
 
 }

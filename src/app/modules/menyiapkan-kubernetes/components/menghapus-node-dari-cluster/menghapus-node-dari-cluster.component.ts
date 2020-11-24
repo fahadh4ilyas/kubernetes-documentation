@@ -10,14 +10,12 @@ import { BottomlinkService } from 'src/app/services/bottomlink.service';
 })
 export class MenghapusNodeDariClusterComponent implements OnInit {
 
-  bottomLink!: bottomLink;
-
   constructor(private _title: Title,
     private _bottomLinkService: BottomlinkService) { }
 
   ngOnInit(): void {
     this._title.setTitle('5. Menghapus Node dari Cluster');
-    this.bottomLink = this._bottomLinkService.getbottomLink("menghapus-node-dari-cluster");
+    this._bottomLinkService.getbottomLink("menghapus-node-dari-cluster");
   }
 
 }

@@ -10,14 +10,12 @@ import { BottomlinkService } from 'src/app/services/bottomlink.service';
 })
 export class MemasangLensTidakWajibComponent implements OnInit {
 
-  bottomLink!: bottomLink;
-
   constructor(private _title: Title,
     private _bottomLinkService: BottomlinkService) { }
 
   ngOnInit(): void {
     this._title.setTitle('6. Memasang Lens (Tidak Wajib)');
-    this.bottomLink = this._bottomLinkService.getbottomLink("memasang-lens-tidak-wajib");
+    this._bottomLinkService.getbottomLink("memasang-lens-tidak-wajib");
   }
 
 }

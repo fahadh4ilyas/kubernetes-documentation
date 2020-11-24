@@ -10,14 +10,12 @@ import { BottomlinkService } from 'src/app/services/bottomlink.service';
 })
 export class ServiceComponent implements OnInit {
 
-  bottomLink!: bottomLink;
-
   constructor(private _title: Title,
     private _bottomLinkService: BottomlinkService) { }
 
   ngOnInit(): void {
     this._title.setTitle('5. Service');
-    this.bottomLink = this._bottomLinkService.getbottomLink("service");
+    this._bottomLinkService.getbottomLink("service");
   }
 
 }

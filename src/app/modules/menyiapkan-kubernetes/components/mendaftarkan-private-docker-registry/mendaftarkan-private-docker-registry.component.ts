@@ -10,14 +10,12 @@ import { BottomlinkService } from 'src/app/services/bottomlink.service';
 })
 export class MendaftarkanPrivateDockerRegistryComponent implements OnInit {
 
-  bottomLink!: bottomLink;
-
   constructor(private _title: Title,
     private _bottomLinkService: BottomlinkService) { }
 
   ngOnInit(): void {
     this._title.setTitle('4. Mendaftarkan private Docker registry');
-    this.bottomLink = this._bottomLinkService.getbottomLink("mendaftarkan-private-docker-registry");
+    this._bottomLinkService.getbottomLink("mendaftarkan-private-docker-registry");
   }
 
 }

@@ -10,14 +10,12 @@ import { BottomlinkService } from 'src/app/services/bottomlink.service';
 })
 export class DasarKubernetesComponent implements OnInit {
 
-  bottomLink!: bottomLink;
-
   constructor(private _title: Title,
     private _bottomLinkService: BottomlinkService) { }
 
   ngOnInit(): void {
     this._title.setTitle('Dasar Kubernetes');
-    this.bottomLink = this._bottomLinkService.getbottomLink("dasar-kubernetes");
+    this._bottomLinkService.getbottomLink("dasar-kubernetes");
   }
 
 }

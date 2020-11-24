@@ -10,14 +10,12 @@ import { BottomlinkService } from 'src/app/services/bottomlink.service';
 })
 export class MenggunakanBerkasConfigKubernetesComponent implements OnInit {
 
-  bottomLink!: bottomLink;
-
   constructor(private _title: Title,
     private _bottomLinkService: BottomlinkService) { }
 
   ngOnInit(): void {
     this._title.setTitle('3. Menggunakan berkas config Kubernetes');
-    this.bottomLink = this._bottomLinkService.getbottomLink("menggunakan-berkas-config-kubernetes");
+    this._bottomLinkService.getbottomLink("menggunakan-berkas-config-kubernetes");
   }
 
 }

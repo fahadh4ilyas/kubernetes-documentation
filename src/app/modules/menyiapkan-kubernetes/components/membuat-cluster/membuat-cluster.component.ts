@@ -10,14 +10,12 @@ import { BottomlinkService } from 'src/app/services/bottomlink.service';
 })
 export class MembuatClusterComponent implements OnInit {
 
-  bottomLink!: bottomLink;
-
   constructor(private _title: Title,
     private _bottomLinkService: BottomlinkService) { }
 
   ngOnInit(): void {
     this._title.setTitle('2. Membuat Cluster');
-    this.bottomLink = this._bottomLinkService.getbottomLink("membuat-cluster");
+    this._bottomLinkService.getbottomLink("membuat-cluster");
   }
 
 }

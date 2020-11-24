@@ -11,6 +11,7 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
 import { TopNavbarComponent } from './components/top-navbar/top-navbar.component';
 import { SideNavbarComponent } from './components/side-navbar/side-navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { BottomLinkComponent } from './components/bottom-link/bottom-link.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FooterComponent } from './components/footer/footer.component';
     PagenotfoundComponent,
     TopNavbarComponent,
     SideNavbarComponent,
-    FooterComponent
+    FooterComponent,
+    BottomLinkComponent
   ],
   imports: [
     BrowserModule,
