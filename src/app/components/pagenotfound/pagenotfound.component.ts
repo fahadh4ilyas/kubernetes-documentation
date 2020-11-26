@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { BottomlinkService } from 'src/app/services/bottomlink.service';
 
 @Component({
   selector: 'app-pagenotfound',
@@ -13,9 +15,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PagenotfoundComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _title: Title,
+    private _bottomLinkService: BottomlinkService) { }
 
   ngOnInit(): void {
+    this._title.setTitle('404: Page Not Found');
+    this._bottomLinkService.getbottomLink("default");
   }
 
 }

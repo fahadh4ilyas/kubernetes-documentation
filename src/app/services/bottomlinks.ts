@@ -6,6 +6,17 @@ interface bottomlinks {
 }
 
 export const BOTTOMLINKS: bottomlinks = {
+    "default": {
+        "left": {
+            "url": [],
+            "text": "",
+        },
+        "center": SIDENAVS[0],
+        "right": {
+            "url": [],
+            "text": "",
+        }
+    },
     "home": {
         "left": {
             "url": [],
