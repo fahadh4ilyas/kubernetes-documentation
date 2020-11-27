@@ -11,7 +11,7 @@ export class SideNavbarComponent implements OnInit {
 
   isCollapsed = true;
 
-  navs = SIDENAVS.slice(1);
+  navs = SIDENAVS;
   currentUrl: string = "/";
   currentFragment: string = "";
 

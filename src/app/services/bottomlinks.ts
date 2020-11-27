@@ -1,5 +1,4 @@
-import { bottomLink } from './bottomlink';
-import { SIDENAVS } from './sidenavs';
+import { bottomLink, NAVS } from './navs';
 
 interface bottomlinks {
     [key: string]: bottomLink;
@@ -7,124 +6,108 @@ interface bottomlinks {
 
 export const BOTTOMLINKS: bottomlinks = {
     "default": {
-        "left": {
-            "url": [],
-            "text": "",
-        },
-        "center": SIDENAVS[0],
-        "right": {
-            "url": [],
-            "text": "",
-        }
+        "left": NAVS["empty"],
+        "center": NAVS["kubernetes-documentation"],
+        "right": NAVS["empty"]
     },
     "home": {
-        "left": {
-            "url": [],
-            "text": "",
-        },
-        "center": {
-            "url": [],
-            "text": "",
-        },
-        "right": SIDENAVS[1]
+        "left": NAVS["empty"],
+        "center": NAVS["empty"],
+        "right": NAVS["pendahuluan"]
     },
     "pendahuluan": {
-        "left": SIDENAVS[0],
-        "center": SIDENAVS[0],
-        "right": SIDENAVS[2]
+        "left": NAVS["kubernetes-documentation"],
+        "center": NAVS["kubernetes-documentation"],
+        "right": NAVS["apa-itu-kubernetes"]
     },
     "apa-itu-kubernetes": {
-        "left": SIDENAVS[1],
-        "center": SIDENAVS[0],
-        "right": SIDENAVS[3]
+        "left": NAVS["pendahuluan"],
+        "center": NAVS["kubernetes-documentation"],
+        "right": NAVS["menyiapkan-kubernetes"]
     },
     "menyiapkan-kubernetes": {
-        "left": SIDENAVS[2],
-        "center": SIDENAVS[0],
-        "right": SIDENAVS[4]
+        "left": NAVS["apa-itu-kubernetes"],
+        "center": NAVS["kubernetes-documentation"],
+        "right": NAVS["memasang-kubernetes"]
     },
     "memasang-kubernetes": {
-        "left": SIDENAVS[3],
-        "center": SIDENAVS[0],
-        "right": SIDENAVS[5]
+        "left": NAVS["menyiapkan-kubernetes"],
+        "center": NAVS["kubernetes-documentation"],
+        "right": NAVS["membuat-cluster"]
     },
     "membuat-cluster": {
-        "left": SIDENAVS[4],
-        "center": SIDENAVS[0],
-        "right": SIDENAVS[6]
+        "left": NAVS["memasang-kubernetes"],
+        "center": NAVS["kubernetes-documentation"],
+        "right": NAVS["menggunakan-berkas-config-kubernetes"]
     },
     "menggunakan-berkas-config-kubernetes": {
-        "left": SIDENAVS[5],
-        "center": SIDENAVS[0],
-        "right": SIDENAVS[7]
+        "left": NAVS["membuat-cluster"],
+        "center": NAVS["kubernetes-documentation"],
+        "right": NAVS["mendaftarkan-private-docker-registry"]
     },
     "mendaftarkan-private-docker-registry": {
-        "left": SIDENAVS[6],
-        "center": SIDENAVS[0],
-        "right": SIDENAVS[8]
+        "left": NAVS["menggunakan-berkas-config-kubernetes"],
+        "center": NAVS["kubernetes-documentation"],
+        "right": NAVS["menghapus-node-dari-cluster"]
     },
     "menghapus-node-dari-cluster": {
-        "left": SIDENAVS[7],
-        "center": SIDENAVS[0],
-        "right": SIDENAVS[9]
+        "left": NAVS["mendaftarkan-private-docker-registry"],
+        "center": NAVS["kubernetes-documentation"],
+        "right": NAVS["memasang-lens-tidak-wajib"]
     },
     "memasang-lens-tidak-wajib": {
-        "left": SIDENAVS[8],
-        "center": SIDENAVS[0],
-        "right": SIDENAVS[10]
+        "left": NAVS["menghapus-node-dari-cluster"],
+        "center": NAVS["kubernetes-documentation"],
+        "right": NAVS["dasar-kubernetes"]
     },
     "dasar-kubernetes": {
-        "left": SIDENAVS[9],
-        "center": SIDENAVS[0],
-        "right": SIDENAVS[11]
+        "left": NAVS["memasang-lens-tidak-wajib"],
+        "center": NAVS["kubernetes-documentation"],
+        "right": NAVS["node"]
     },
     "node": {
-        "left": SIDENAVS[10],
-        "center": SIDENAVS[0],
-        "right": SIDENAVS[12]
+        "left": NAVS["dasar-kubernetes"],
+        "center": NAVS["kubernetes-documentation"],
+        "right": NAVS["namespace"]
     },
     "namespace": {
-        "left": SIDENAVS[11],
-        "center": SIDENAVS[0],
-        "right": SIDENAVS[13]
+        "left": NAVS["node"],
+        "center": NAVS["kubernetes-documentation"],
+        "right": NAVS["pod"]
     },
     "pod": {
-        "left": SIDENAVS[12],
-        "center": SIDENAVS[0],
-        "right": SIDENAVS[14]
+        "left": NAVS["namespace"],
+        "center": NAVS["kubernetes-documentation"],
+        "right": NAVS["pods-controller"]
     },
     "pods-controller": {
-        "left": SIDENAVS[13],
-        "center": SIDENAVS[0],
-        "right": SIDENAVS[17]
+        "left": NAVS["pod"],
+        "center": NAVS["kubernetes-documentation"],
+        "right": NAVS["service"]
     },
     "service": {
-        "left": SIDENAVS[14],
-        "center": SIDENAVS[0],
-        "right": SIDENAVS[18]
+        "left": NAVS["pods-controller"],
+        "center": NAVS["kubernetes-documentation"],
+        "right": NAVS["configuration"]
     },
     "configuration": {
-        "left": SIDENAVS[17],
-        "center": SIDENAVS[0],
-        "right": SIDENAVS[23]
+        "left": NAVS["service"],
+        "center": NAVS["kubernetes-documentation"],
+        "right": NAVS["storage"]
     },
     "storage": {
-        "left": SIDENAVS[18],
-        "center": SIDENAVS[0],
-        "right": SIDENAVS[27]
+        "left": NAVS["configuration"],
+        "center": NAVS["kubernetes-documentation"],
+        "right": NAVS["pods-controller-ii"]
     },
     "pods-controller-ii": {
-        "left": SIDENAVS[23],
-        "center": SIDENAVS[0],
-        "right": SIDENAVS[31]
+        "left": NAVS["storage"],
+        "center": NAVS["kubernetes-documentation"],
+        "right": NAVS["access-control"]
     },
     "access-control": {
-        "left": SIDENAVS[27],
-        "center": SIDENAVS[0],
-        "right": {
-            "url": [],
-            "fragment": "",
-            "text": "",
-        }
+        "left": NAVS["pods-controller-ii"],
+        "center": NAVS["kubernetes-documentation"],
+        "right": NAVS["empty"]
     },
 }

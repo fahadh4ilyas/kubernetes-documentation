@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { bottomLink } from './bottomlink';
+import { bottomLink } from './navs';
 import { BOTTOMLINKS } from './bottomlinks';
 
 @Injectable({

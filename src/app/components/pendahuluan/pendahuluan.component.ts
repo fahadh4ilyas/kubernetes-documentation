@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { bottomLink } from 'src/app/services/bottomlink';
 import { BottomlinkService } from 'src/app/services/bottomlink.service';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { bottomLink } from 'src/app/services/bottomlink';
+import { bottomLink } from 'src/app/services/navs';
 import { BottomlinkService } from 'src/app/services/bottomlink.service';
 
 @Component({
