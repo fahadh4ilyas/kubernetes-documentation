@@ -100,7 +100,9 @@ function cleanCodeMirror(container, pagePath) {
     });
     const cleaned = document.createElement('pre');
     cleaned.className = `code-block${lang ? ' lang-' + lang : ''}`;
-    cleaned.innerHTML = `<code>${lines.join('\n')}</code>`;
+    const code = document.createElement('code');
+    code.textContent = lines.join('\n');
+    cleaned.appendChild(code);
     pre.replaceWith(cleaned);
   });
 
@@ -147,9 +149,12 @@ async function loadPage(path) {
     if (!resp.ok) throw new Error('Not found');
     let html = await resp.text();
 
-    // Double-encode angle brackets so they survive innerHTML.
-    // &lt;volume_name&gt; would decode to <volume_name> which looks like an HTML tag.
-    html = html.replace(/&lt;/g, '&amp;lt;').replace(/&gt;/g, '&amp;gt;');
+    // Double-encode angle brackets ONLY inside code blocks so they
+    // survive innerHTML. &lt;volume_name&gt; would decode to <volume_name>
+    // which looks like an HTML tag and gets eaten.
+    html = html.replace(/(<pre\b[^>]*class="[^"]*md-fences[^"]*"[^>]*>)([\s\S]*?)(<\/pre>)/gi,
+      (_, open, body, close) => open + body.replace(/&lt;/g, '&amp;lt;').replace(/&gt;/g, '&amp;gt;') + close
+    );
 
     contentEl.innerHTML = html;
     cleanCodeMirror(contentEl, path);
