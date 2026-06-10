@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kubernetes Documentation — K8s Docs</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            mono: ['"JetBrains Mono"', 'monospace'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Sidebar */
+    .sidebar {
+      scrollbar-width: thin;
+      scrollbar-color: #374151 transparent;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-thumb { background: #374151; border-radius: 2px; }
+    .sidebar.collapsed { width: 0 !important; min-width: 0; padding: 0; border-right-width: 0; opacity: 0; overflow: hidden; }
+
+    .sidebar-link {
+      display: block;
+      padding: 4px 12px 4px 12px;
+      font-size: 0.8125rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: #9ca3af;
+      border-left: 2px solid transparent;
+      transition: all 0.15s;
+      overflow-wrap: break-word;
+    }
+    .sidebar-link:hover { color: #6ee7b7; border-left-color: #374151; }
+    .sidebar-link.active { color: #6ee7b7; border-left-color: #6ee7b7; background: rgba(16,185,129,0.08); }
+    .sidebar-link.section { color: #d1d5db; font-weight: 600; font-size: 0.875rem; padding-top: 8px; }
+    .sidebar-link.section:hover { border-left-color: transparent; }
+
+    /* Bottom nav */
+    .bottom-link {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8125rem;
+      color: #9ca3af;
+      transition: color 0.15s;
+    }
+    .bottom-link:hover { color: #6ee7b7; }
+    .bottom-link.center { font-weight: 600; color: #d1d5db; }
+    .bottom-link.center:hover { color: #6ee7b7; }
+    .bottom-link.disabled { opacity: 0; pointer-events: none; }
+
+    /* Content styling */
+    #content { font-family: 'Inter', system-ui, sans-serif; line-height: 1.7; color: #d1d5db; }
+    #content h1, #content h2, #content h3, #content h4, #content h5, #content h6 {
+      color: #f3f4f6; font-weight: 600; margin-top: 1.5em; margin-bottom: 0.5em;
+    }
+    #content h1 { font-size: 1.75rem; border-bottom: 1px solid #374151; padding-bottom: 0.3em; }
+    #content h2 { font-size: 1.5rem; border-bottom: 1px solid #1f2937; padding-bottom: 0.25em; }
+    #content h3 { font-size: 1.25rem; }
+    #content h4 { font-size: 1.1rem; }
+    #content p { margin-bottom: 0.75em; }
+    #content a { color: #6ee7b7; text-decoration: none; }
+    #content a:hover { text-decoration: underline; }
+    #content blockquote {
+      border-left: 3px solid #374151;
+      padding: 0.5em 1em;
+      margin: 1em 0;
+      color: #9ca3af;
+      background: rgba(55,65,81,0.3);
+      border-radius: 0 4px 4px 0;
+    }
+    #content blockquote strong { color: #fbbf24; }
+    #content em { color: #d1d5db; font-style: italic; }
+    #content strong { color: #f3f4f6; }
+    #content ul, #content ol { padding-left: 1.5em; margin-bottom: 0.75em; }
+    #content ul { list-style-type: disc; }
+    #content ol { list-style-type: decimal; }
+    #content li { margin-bottom: 0.25em; display: list-item; }
+    #content img { max-width: 100%; border-radius: 4px; }
+
+    /* Code blocks */
+    #content pre.code-block {
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 6px;
+      padding: 1em;
+      overflow-x: auto;
+      margin: 1em 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8125rem;
+      line-height: 1.5;
+    }
+    #content pre.code-block code { color: #e5e7eb; background: none; padding: 0; }
+    #content code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8125rem;
+      background: #1f2937;
+      padding: 2px 6px;
+      border-radius: 3px;
+      color: #fbbf24;
+    }
+    #content pre.code-block code { color: #e5e7eb; }
+
+    /* TOC */
+    #content .md-toc { margin: 1em 0; }
+    #content .md-toc-content a { color: #9ca3af; }
+    #content .md-toc-content a:hover { color: #6ee7b7; }
+    #content .md-toc-item { display: block; }
+    #content .md-toc-h2 { padding-left: 0; }
+    #content .md-toc-h3 { padding-left: 1.5em; }
+    #content .md-toc-h4 { padding-left: 3em; }
+
+    /* Responsive sidebar */
+    @media (max-width: 768px) {
+      .sidebar {
+        position: fixed;
+        left: 0;
+        top: 48px;
+        bottom: 0;
+        width: 288px;
+        z-index: 40;
+        transition: left 0.2s, width 0.2s;
+        overflow-y: auto;
+        background: #0f172a;
+        border-right: 1px solid #1e293b;
+      }
+      .sidebar.collapsed { left: -288px; width: 288px !important; opacity: 1; overflow: hidden; border-right-width: 1px; }
+    }
+  </style>
+</head>
+<body class="bg-gray-950 text-gray-300 font-sans antialiased min-h-screen">
+
+  <!-- Top navbar -->
+  <nav class="bg-gray-950 border-b border-emerald-900/50 sticky top-0 z-50 h-12">
+    <div class="max-w-full mx-auto px-4 h-full flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <button id="sidebar-toggle" class="p-1 text-gray-400 hover:text-emerald-400 transition-colors" aria-label="Toggle sidebar">
+          <svg id="sidebar-icon-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="sidebar-icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+        <a href="./" class="font-mono font-bold text-emerald-400 hover:text-emerald-300 transition-colors text-sm">
+          ~/k8s-docs
+        </a>
+      </div>
+      <a href="/" class="text-xs text-gray-600 hover:text-gray-400 font-mono transition-colors">
+        ← back to fahadh
+      </a>
+    </div>
+  </nav>
+
+  <!-- Layout -->
+  <div class="flex">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar w-72 flex-shrink-0 bg-gray-950 border-r border-gray-800/50 h-[calc(100vh-48px)] sticky top-12 overflow-y-auto py-4 transition-all duration-200">
+      <!-- populated by app.js -->
+    </aside>
+
+    <!-- Main content -->
+    <main class="flex-1 min-w-0">
+      <div class="max-w-3xl mx-auto px-4 py-8">
+        <div id="content">
+          <!-- populated by app.js -->
+        </div>
+
+        <!-- Bottom nav -->
+        <div id="bottom-nav" class="mt-12 py-6 border-t border-gray-800 flex justify-between items-center gap-4">
+          <!-- populated by app.js -->
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
