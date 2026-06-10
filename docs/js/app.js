@@ -194,6 +194,13 @@ function initMobileSidebar() {
   const iconOpen = document.getElementById('sidebar-icon-open');
   const iconClose = document.getElementById('sidebar-icon-close');
 
+  // Start collapsed on mobile
+  if (window.innerWidth <= 768) {
+    sidebar.classList.add('collapsed');
+    iconOpen.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+  }
+
   document.getElementById('sidebar-toggle')?.addEventListener('click', () => {
     sidebar.classList.toggle('collapsed');
     const isCollapsed = sidebar.classList.contains('collapsed');
