@@ -92,11 +92,10 @@ function cleanCodeMirror(container, pagePath) {
     const lang = pre.getAttribute('lang') || '';
     const lines = [];
     pre.querySelectorAll('.CodeMirror-line').forEach(line => {
-      // Try inner span first, fall back to line's own textContent
       const inner = line.querySelector('span[role="presentation"]');
       let text = inner ? inner.textContent : line.textContent;
-      // Normalize non-breaking spaces to regular spaces
-      text = (text || '').replace(/\u00A0/g, ' ');
+      // Normalize non-breaking spaces, decode double-encoded entities
+      text = (text || '').replace(/\u00A0/g, ' ').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
       lines.push(text);
     });
     const cleaned = document.createElement('pre');
@@ -148,9 +147,8 @@ async function loadPage(path) {
     if (!resp.ok) throw new Error('Not found');
     let html = await resp.text();
 
-    // Double-encode angle brackets so they survive innerHTML parsing.
-    // Without this, &lt;volume_name&gt; in YAML blocks gets parsed as <volume_name>
-    // which looks like an HTML tag and gets eaten by the parser.
+    // Double-encode angle brackets so they survive innerHTML.
+    // &lt;volume_name&gt; would decode to <volume_name> which looks like an HTML tag.
     html = html.replace(/&lt;/g, '&amp;lt;').replace(/&gt;/g, '&amp;gt;');
 
     contentEl.innerHTML = html;
