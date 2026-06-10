@@ -88,8 +88,13 @@ function cleanCodeMirror(container, pagePath) {
   container.querySelectorAll('pre.md-fences').forEach(pre => {
     const lang = pre.getAttribute('lang') || '';
     const lines = [];
-    pre.querySelectorAll('.CodeMirror-line span[role="presentation"]').forEach(span => {
-      lines.push(span.textContent || '');
+    pre.querySelectorAll('.CodeMirror-line').forEach(line => {
+      // Try inner span first, fall back to line's own textContent
+      const inner = line.querySelector('span[role="presentation"]');
+      let text = inner ? inner.textContent : line.textContent;
+      // Normalize non-breaking spaces to regular spaces
+      text = (text || '').replace(/\u00A0/g, ' ');
+      lines.push(text);
     });
     const cleaned = document.createElement('pre');
     cleaned.className = `code-block${lang ? ' lang-' + lang : ''}`;
