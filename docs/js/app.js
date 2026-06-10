@@ -54,7 +54,7 @@ function renderSidebar(currentPath) {
     if (isActive) cls += 'active ';
     if (isSection) cls += 'section ';
 
-    html += `<a href="${href}" class="sidebar-link ${cls.trim()}" style="padding-left:${item.class ? parseInt(item.class.replace('ml-','')) * 12 : 12}px">${item.text}</a>`;
+    html += `<a href="${href}" class="sidebar-link ${cls.trim()}" style="padding-left:${item.class ? parseInt(item.class.replace('ml-','')) * 14 + 1 : 12}px">${item.text}</a>`;
   }
   sidebar.innerHTML = html;
 }
