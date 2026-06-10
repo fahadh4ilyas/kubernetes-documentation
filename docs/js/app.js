@@ -191,31 +191,36 @@ function updatePageTitle(path) {
 
 function initMobileSidebar() {
   const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebar-overlay');
   const iconOpen = document.getElementById('sidebar-icon-open');
   const iconClose = document.getElementById('sidebar-icon-close');
+  if (!sidebar || !iconOpen || !iconClose) return;
 
-  // Start collapsed on mobile
-  if (window.innerWidth <= 768) {
-    sidebar.classList.add('collapsed');
+  function openSidebar() {
+    sidebar.classList.add('open');
+    if (overlay) overlay.classList.add('visible');
+    iconOpen.classList.add('hidden');
+    iconClose.classList.remove('hidden');
+  }
+
+  function closeSidebar() {
+    sidebar.classList.remove('open');
+    if (overlay) overlay.classList.remove('visible');
     iconOpen.classList.remove('hidden');
     iconClose.classList.add('hidden');
   }
 
   document.getElementById('sidebar-toggle')?.addEventListener('click', () => {
-    sidebar.classList.toggle('collapsed');
-    const isCollapsed = sidebar.classList.contains('collapsed');
-    iconOpen.classList.toggle('hidden', isCollapsed);
-    iconClose.classList.toggle('hidden', !isCollapsed);
+    sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
   });
 
-  // Close sidebar on link click (mobile)
-  document.getElementById('sidebar')?.addEventListener('click', (e) => {
+  // Tap overlay to close
+  overlay?.addEventListener('click', closeSidebar);
+
+  // Tap a sidebar link to close
+  sidebar.addEventListener('click', (e) => {
     if (e.target.tagName === 'A' && e.target.classList.contains('sidebar-link')) {
-      if (window.innerWidth <= 768) {
-        sidebar.classList.add('collapsed');
-        iconOpen.classList.remove('hidden');
-        iconClose.classList.add('hidden');
-      }
+      closeSidebar();
     }
   });
 }
