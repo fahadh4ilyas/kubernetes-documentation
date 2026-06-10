@@ -143,7 +143,12 @@ async function loadPage(path) {
   try {
     const resp = await fetch(pageFile);
     if (!resp.ok) throw new Error('Not found');
-    const html = await resp.text();
+    let html = await resp.text();
+
+    // Double-encode angle brackets so they survive innerHTML parsing.
+    // Without this, &lt;volume_name&gt; in YAML blocks gets parsed as <volume_name>
+    // which looks like an HTML tag and gets eaten by the parser.
+    html = html.replace(/&lt;/g, '&amp;lt;').replace(/&gt;/g, '&amp;gt;');
 
     contentEl.innerHTML = html;
     cleanCodeMirror(contentEl, path);
