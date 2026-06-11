@@ -54,9 +54,8 @@ function renderSidebar(currentPath) {
     if (isActive) cls += 'active ';
     if (isSection) cls += 'section ';
 
-    const padLeft = item.class
-      ? (parseInt(item.class.replace('ml-','')) === 5 ? 71 : parseInt(item.class.replace('ml-','')) * 12)
-      : 12;
+    const padMap = { 3: 12, 4: 24, 5: 48 };
+    const padLeft = item.class ? (padMap[parseInt(item.class.replace('ml-',''))] || 12) : 12;
     html += `<a href="${href}" class="sidebar-link ${cls.trim()}" style="padding-left:${padLeft}px">${item.text}</a>`;
   }
   sidebar.innerHTML = html;
@@ -199,6 +198,13 @@ function initMobileSidebar() {
   const iconClose = document.getElementById('sidebar-icon-close');
   if (!sidebar || !iconOpen || !iconClose) return;
 
+  function isMobile() { return window.innerWidth <= 768; }
+
+  // Start collapsed on all screen sizes
+  if (!isMobile()) {
+    sidebar.classList.add('collapsed');
+  }
+
   function openSidebar() {
     sidebar.classList.add('open');
     if (overlay) overlay.classList.add('visible');
@@ -214,16 +220,37 @@ function initMobileSidebar() {
   }
 
   document.getElementById('sidebar-toggle')?.addEventListener('click', () => {
-    sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+    if (isMobile()) {
+      sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+    } else {
+      sidebar.classList.toggle('collapsed');
+      const c = sidebar.classList.contains('collapsed');
+      iconOpen.classList.toggle('hidden', !c);
+      iconClose.classList.toggle('hidden', c);
+    }
   });
 
   // Tap overlay to close
   overlay?.addEventListener('click', closeSidebar);
 
-  // Tap a sidebar link to close
+  // Tap a sidebar link to close (mobile only)
   sidebar.addEventListener('click', (e) => {
     if (e.target.tagName === 'A' && e.target.classList.contains('sidebar-link')) {
-      closeSidebar();
+      if (isMobile()) closeSidebar();
+    }
+  });
+
+  // Reset sidebar state when crossing desktop/mobile breakpoint
+  let wasMobile = isMobile();
+  window.addEventListener('resize', () => {
+    const nowMobile = isMobile();
+    if (nowMobile !== wasMobile) {
+      wasMobile = nowMobile;
+      sidebar.classList.remove('collapsed', 'open');
+      if (overlay) overlay.classList.remove('visible');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+      if (!nowMobile) sidebar.classList.add('collapsed');
     }
   });
 }
