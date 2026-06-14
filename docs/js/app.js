@@ -240,6 +240,29 @@ function initMobileSidebar() {
     }
   });
 
+  // Swipe gestures on mobile
+  let touchStartX = 0;
+  let touchStartY = 0;
+  document.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  document.addEventListener('touchend', (e) => {
+    if (!isMobile()) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    // Only trigger if horizontal swipe is dominant
+    if (Math.abs(dx) < Math.abs(dy)) return;
+    if (Math.abs(dx) < 50) return; // minimum swipe distance
+    if (dx > 0 && !sidebar.classList.contains('open')) {
+      // Swipe right → open
+      openSidebar();
+    } else if (dx < 0 && sidebar.classList.contains('open')) {
+      // Swipe left when open → close
+      closeSidebar();
+    }
+  });
+
   // Reset sidebar state when crossing desktop/mobile breakpoint
   let wasMobile = isMobile();
   window.addEventListener('resize', () => {
