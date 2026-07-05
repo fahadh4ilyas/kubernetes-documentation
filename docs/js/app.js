@@ -173,25 +173,29 @@ async function loadPage(path) {
     contentEl.innerHTML = html;
     cleanCodeMirror(contentEl, path);
 
-    // Handle fragment scrolling (for sidebar sub-item clicks)
-    const fragment = getTargetFragment();
-    if (fragment) {
-      setTimeout(() => {
-        const el = document.getElementById(fragment) || contentEl.querySelector(`a[name="${fragment}"]`);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    }
-
     renderSidebar(path);
     renderBottomNav(path);
     updatePageTitle(path);
 
     // Convert hash URL to clean URL after first load (from 404 redirect)
+    var frag = getTargetFragment();
     if (window.location.hash && window.location.hash.startsWith('#/')) {
       var clean = '/kubernetes-documentation/' + path;
-      var frag = getTargetFragment();
       if (frag) clean += '#' + frag;
       window.history.replaceState(null, '', clean);
+    }
+
+    // Scroll to fragment (for direct visit with hash or sub-item clicks)
+    if (frag) {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          var el = document.getElementById(frag) || contentEl.querySelector('a[name="' + frag + '"]');
+          if (el) {
+            var target = el.closest('h1,h2,h3,h4,h5,h6') || el;
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
     }
 
   } catch (e) {
@@ -318,8 +322,11 @@ function handleNavClick(e) {
   // Same page — just scroll to fragment
   if (path === currentPage && fragment) {
     window.history.pushState(null, '', href);
-    var el = document.getElementById(fragment);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    var el = document.getElementById(fragment) || document.querySelector('a[name="' + fragment + '"]');
+    if (el) {
+      var target = el.closest('h1,h2,h3,h4,h5,h6') || el;
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
     return;
   }
 
@@ -329,9 +336,12 @@ function handleNavClick(e) {
   // Scroll to fragment after page load
   if (fragment) {
     setTimeout(function() {
-      var el = document.getElementById(fragment);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }, 200);
+      var el = document.getElementById(fragment) || document.querySelector('a[name="' + fragment + '"]');
+      if (el) {
+        var target = el.closest('h1,h2,h3,h4,h5,h6') || el;
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 300);
   }
 }
 
