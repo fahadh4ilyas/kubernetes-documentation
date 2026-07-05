@@ -171,6 +171,16 @@ async function loadPage(path) {
     );
 
     contentEl.innerHTML = html;
+
+    // Fix relative asset URLs — with clean-path routing the base URL is
+    // deeper than root, so assets/images/ would resolve incorrectly.
+    contentEl.querySelectorAll('img[src]').forEach(function(img) {
+      var src = img.getAttribute('src');
+      if (src && src.indexOf('/') !== 0 && src.indexOf('http') !== 0) {
+        img.setAttribute('src', '/kubernetes-documentation/' + src);
+      }
+    });
+
     cleanCodeMirror(contentEl, path);
 
     renderSidebar(path);
