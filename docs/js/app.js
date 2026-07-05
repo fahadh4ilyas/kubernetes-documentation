@@ -40,7 +40,7 @@ function getBreadcrumbKey(path) {
 }
 
 function getPagePath(path) {
-  return PAGE_MAP[path] || 'pages/404.html';
+  return '/kubernetes-documentation/' + (PAGE_MAP[path] || 'pages/404.html');
 }
 
 /* ---- Sidebar ---- */

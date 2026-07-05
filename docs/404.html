@@ -3,20 +3,21 @@
 <head>
   <meta charset="utf-8">
   <title>Redirecting…</title>
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=/kubernetes-documentation/">
+  </noscript>
   <script>
     // Redirect 404 to root with path as query param
     // /kubernetes-documentation/pods → /kubernetes-documentation/?p=/pods
     var segments = window.location.pathname.split('/');
     // segments: ['', 'kubernetes-documentation', 'pods', ...]
-    // Keep first 2 segments (empty + repo name)
     var base = segments.slice(0, 2).join('/');
     var rest = segments.slice(2).join('/');
-    window.location.replace(
-      window.location.protocol + '//' + window.location.host +
+    var target = window.location.protocol + '//' + window.location.host +
       base + '/?p=/' + rest +
       (window.location.search ? '&q=' + window.location.search.slice(1).replace(/&/g, '~and~') : '') +
-      window.location.hash
-    );
+      window.location.hash;
+    window.location.replace(target);
   </script>
 </head>
 <body></body>
