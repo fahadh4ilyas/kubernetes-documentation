@@ -122,3 +122,107 @@ const PAGE_MAP = {
   'dasar-kubernetes/8-pods-controller-ii': 'pages/dasar-kubernetes/8-pods-controller-ii.html',
   'dasar-kubernetes/9-access-control': 'pages/dasar-kubernetes/9-access-control.html'
 };
+
+// Page metadata — title, description, keywords for SEO
+const PAGE_META = {
+  '': {
+    title: 'Kubernetes Documentation — K8s Docs',
+    description: 'Dokumentasi Kubernetes lengkap dalam Bahasa Indonesia. Panduan dari pengenalan, instalasi, hingga konsep lanjutan seperti Storage, Access Control, dan Pods Controller.',
+    keywords: 'Kubernetes, K8s, dokumentasi, Indonesia, container, orchestration, Docker, cluster, node, pod, deployment, service'
+  },
+  'pendahuluan': {
+    title: 'Pendahuluan — K8s Docs',
+    description: 'Pengenalan Kubernetes: apa itu container orchestration, sejarah Kubernetes, dan mengapa Kubernetes menjadi standar industri untuk deployment aplikasi.',
+    keywords: 'Kubernetes, pengenalan, container orchestration, sejarah Kubernetes, deployment'
+  },
+  'apa-itu-kubernetes': {
+    title: 'Apa itu Kubernetes? — K8s Docs',
+    description: 'Penjelasan mendalam tentang apa itu Kubernetes, arsitektur dasar, komponen-komponen utama, dan bagaimana Kubernetes mengelola container di lingkungan production.',
+    keywords: 'Kubernetes, arsitektur, komponen, master node, worker node, control plane, kubelet, kube-proxy'
+  },
+  'menyiapkan-kubernetes': {
+    title: 'Menyiapkan Kubernetes — K8s Docs',
+    description: 'Panduan lengkap menyiapkan Kubernetes dari awal: instalasi, konfigurasi cluster, private Docker registry, dan tools pendukung seperti Lens.',
+    keywords: 'Kubernetes, instalasi, setup, cluster, konfigurasi, Docker registry, Lens, kubectl'
+  },
+  'menyiapkan-kubernetes/1-memasang-kubernetes': {
+    title: '1. Memasang Kubernetes — K8s Docs',
+    description: 'Langkah-langkah memasang Kubernetes di berbagai environment: menggunakan kubeadm, minikube untuk local development, dan managed Kubernetes services.',
+    keywords: 'memasang Kubernetes, kubeadm, minikube, instalasi Kubernetes, setup Kubernetes'
+  },
+  'menyiapkan-kubernetes/2-membuat-cluster': {
+    title: '2. Membuat Cluster — K8s Docs',
+    description: 'Panduan membuat dan mengonfigurasi cluster Kubernetes: inisialisasi control plane, menambahkan worker node, dan verifikasi cluster.',
+    keywords: 'membuat cluster Kubernetes, control plane, worker node, join node, kubeadm init'
+  },
+  'menyiapkan-kubernetes/3-menggunakan-berkas-config-kubernetes': {
+    title: '3. Menggunakan Berkas Config Kubernetes — K8s Docs',
+    description: 'Memahami dan menggunakan berkas kubeconfig untuk mengelola akses ke cluster Kubernetes: konteks, user, dan multiple cluster.',
+    keywords: 'kubeconfig, konfigurasi Kubernetes, kubectl config, context, multiple cluster'
+  },
+  'menyiapkan-kubernetes/4-mendaftarkan-private-docker-registry': {
+    title: '4. Mendaftarkan Private Docker Registry — K8s Docs',
+    description: 'Cara mendaftarkan dan menggunakan private Docker registry di Kubernetes: membuat secret, konfigurasi imagePullSecrets, dan best practices.',
+    keywords: 'private Docker registry, imagePullSecrets, Docker secret, container registry, Kubernetes'
+  },
+  'menyiapkan-kubernetes/5-menghapus-node-dari-cluster': {
+    title: '5. Menghapus Node dari Cluster — K8s Docs',
+    description: 'Prosedur menghapus node dari cluster Kubernetes dengan aman: drain, cordon, dan delete node tanpa mengganggu workload yang berjalan.',
+    keywords: 'menghapus node Kubernetes, drain node, cordon, delete node, maintenance cluster'
+  },
+  'menyiapkan-kubernetes/6-memasang-lens-tidak-wajib': {
+    title: '6. Memasang Lens (Tidak Wajib) — K8s Docs',
+    description: 'Panduan memasang dan menggunakan Lens — IDE untuk Kubernetes: monitoring cluster, manajemen resource, dan troubleshooting visual.',
+    keywords: 'Lens Kubernetes, IDE Kubernetes, monitoring cluster, manajemen Kubernetes, Lens IDE'
+  },
+  'dasar-kubernetes': {
+    title: 'Dasar Kubernetes — K8s Docs',
+    description: 'Konsep dasar Kubernetes: Node, Namespace, Pod, Deployment, Service, Configuration, Storage, dan Access Control. Panduan lengkap untuk pemula.',
+    keywords: 'dasar Kubernetes, Node, Namespace, Pod, Deployment, Service, ConfigMap, Secret, Storage'
+  },
+  'dasar-kubernetes/1-node': {
+    title: '1. Node — K8s Docs',
+    description: 'Memahami Node di Kubernetes: arsitektur, komponen kubelet dan kube-proxy, manajemen node, cordon, drain, dan monitoring status node.',
+    keywords: 'Node Kubernetes, kubelet, kube-proxy, worker node, cordon, drain, status node'
+  },
+  'dasar-kubernetes/2-namespace': {
+    title: '2. Namespace — K8s Docs',
+    description: 'Mengelola Namespace di Kubernetes: isolasi resource, resource quota, default namespace, dan best practices untuk multi-tenant environment.',
+    keywords: 'Namespace Kubernetes, isolasi resource, resource quota, multi-tenant, default namespace'
+  },
+  'dasar-kubernetes/3-pod': {
+    title: '3. Pod — K8s Docs',
+    description: 'Memahami Pod — unit terkecil di Kubernetes: lifecycle, multi-container pod, init container, resource request/limit, dan health checks.',
+    keywords: 'Pod Kubernetes, lifecycle pod, multi-container, init container, health check, liveness probe, readiness probe'
+  },
+  'dasar-kubernetes/4-pods-controller': {
+    title: '4. Pods Controller — K8s Docs',
+    description: 'Pods Controller di Kubernetes: Deployment untuk stateless apps dan DaemonSet untuk menjalankan pod di setiap node. Strategi update dan rollback.',
+    keywords: 'Pods Controller, Deployment, DaemonSet, ReplicaSet, rolling update, rollback, stateless'
+  },
+  'dasar-kubernetes/5-service': {
+    title: '5. Service — K8s Docs',
+    description: 'Service di Kubernetes: ClusterIP, NodePort, LoadBalancer, dan ExternalName. Service discovery, kube-proxy, dan networking di Kubernetes.',
+    keywords: 'Service Kubernetes, ClusterIP, NodePort, LoadBalancer, ExternalName, kube-proxy, service discovery'
+  },
+  'dasar-kubernetes/6-configuration': {
+    title: '6. Configuration — K8s Docs',
+    description: 'Manajemen konfigurasi di Kubernetes: ConfigMap untuk data non-sensitif, Secret untuk data sensitif, ResourceQuota dan LimitRange untuk kontrol resource.',
+    keywords: 'ConfigMap, Secret, ResourceQuota, LimitRange, konfigurasi Kubernetes, environment variable'
+  },
+  'dasar-kubernetes/7-storage': {
+    title: '7. Storage — K8s Docs',
+    description: 'Storage di Kubernetes: Volume, PersistentVolume, PersistentVolumeClaim, dan StorageClass. Provisioning dinamis dan manajemen persistent storage.',
+    keywords: 'Storage Kubernetes, Volume, PersistentVolume, PersistentVolumeClaim, StorageClass, PV, PVC'
+  },
+  'dasar-kubernetes/8-pods-controller-ii': {
+    title: '8. Pods Controller II — K8s Docs',
+    description: 'Pods Controller lanjutan: Job untuk batch processing, CronJob untuk scheduled jobs, dan StatefulSet untuk aplikasi stateful dengan persistent identity.',
+    keywords: 'Job Kubernetes, CronJob, StatefulSet, batch processing, scheduled job, stateful application'
+  },
+  'dasar-kubernetes/9-access-control': {
+    title: '9. Access Control — K8s Docs',
+    description: 'Access Control di Kubernetes: ServiceAccount, Role, RoleBinding, ClusterRole, dan ClusterRoleBinding. RBAC untuk mengelola izin akses.',
+    keywords: 'Access Control Kubernetes, RBAC, ServiceAccount, Role, RoleBinding, ClusterRole, ClusterRoleBinding'
+  }
+};

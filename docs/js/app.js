@@ -6,12 +6,20 @@ let currentPage = '';
 
 /* ---- Routing ---- */
 
-function getRouteFromHash() {
-  let hash = window.location.hash.replace(/^#/, '');
-  // Extract path before any fragment separator
-  const fragIdx = hash.indexOf('#');
-  if (fragIdx !== -1) hash = hash.substring(0, fragIdx);
-  return hash.replace(/^\/?/, '') || '';
+function getRoute() {
+  // Hash routing (internal navigation via sidebar links)
+  var hash = window.location.hash.replace(/^#/, '');
+  if (hash) {
+    var fragIdx = hash.indexOf('#');
+    if (fragIdx !== -1) hash = hash.substring(0, fragIdx);
+    return hash.replace(/^\/?/, '') || '';
+  }
+  // Path routing (direct visit or 404 redirect via clean URL)
+  var base = '/kubernetes-documentation/';
+  if (window.location.pathname.startsWith(base)) {
+    return window.location.pathname.slice(base.length).replace(/^\/?/, '') || '';
+  }
+  return '';
 }
 
 function getTargetFragment() {
@@ -179,14 +187,14 @@ async function loadPage(path) {
 }
 
 function updatePageTitle(path) {
-  const titles = {
-    '': 'Kubernetes Documentation',
-    'pendahuluan': 'Pendahuluan',
-    'apa-itu-kubernetes': 'Apa itu Kubernetes?',
-    'menyiapkan-kubernetes': 'Menyiapkan Kubernetes',
-    'dasar-kubernetes': 'Dasar Kubernetes'
-  };
-  document.title = (titles[path] || path.replace(/-/g, ' ')) + ' — K8s Docs';
+  var meta = PAGE_META[path] || PAGE_META[''];
+  document.title = (meta && meta.title) ? meta.title : 'Kubernetes Documentation — K8s Docs';
+
+  var descEl = document.querySelector('meta[name="description"]');
+  if (descEl && meta && meta.description) descEl.setAttribute('content', meta.description);
+
+  var kwEl = document.querySelector('meta[name="keywords"]');
+  if (kwEl && meta && meta.keywords) kwEl.setAttribute('content', meta.keywords);
 }
 
 /* ---- Mobile Sidebar Toggle ---- */
@@ -280,11 +288,15 @@ function initMobileSidebar() {
 
 /* ---- Init ---- */
 
-window.addEventListener('hashchange', () => {
-  loadPage(getRouteFromHash());
+window.addEventListener('hashchange', function() {
+  loadPage(getRoute());
 });
 
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('popstate', function() {
+  loadPage(getRoute());
+});
+
+document.addEventListener('DOMContentLoaded', function() {
   initMobileSidebar();
-  loadPage(getRouteFromHash());
+  loadPage(getRoute());
 });
