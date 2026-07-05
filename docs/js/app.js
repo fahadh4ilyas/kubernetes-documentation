@@ -55,7 +55,7 @@ function renderSidebar(currentPath) {
     const isActive = currentPath === urlPath;
     const isSection = item.class === 'ml-3' && !/^\d/.test(item.text);
 
-    let href = '#/' + urlPath;
+    let href = '/kubernetes-documentation/' + urlPath;
     if (item.fragment) href += '#' + item.fragment;
 
     let cls = '';
@@ -81,12 +81,12 @@ function renderBottomNav(path) {
   const mkLink = (item, side) => {
     if (!item || !item.url.length) return `<span class="bottom-link disabled invisible">—</span>`;
     const urlPath = item.url.join('/');
-    return `<a href="#/${urlPath}" class="bottom-link ${side}">${side === 'left' ? '← ' : ''}${item.text}${side === 'right' ? ' →' : ''}</a>`;
+    return `<a href="/kubernetes-documentation/${urlPath}" class="bottom-link ${side}">${side === 'left' ? '← ' : ''}${item.text}${side === 'right' ? ' →' : ''}</a>`;
   };
 
   container.innerHTML = `
     ${mkLink(links.left, 'left')}
-    <a href="#/" class="bottom-link center">${links.center.text}</a>
+    <a href="/kubernetes-documentation/" class="bottom-link center">${links.center.text}</a>
     ${mkLink(links.right, 'right')}
   `;
 }
@@ -129,7 +129,7 @@ function cleanCodeMirror(container, pagePath) {
       link = basePath + '/' + link;
     }
 
-    let href = '#/' + link;
+    let href = '/kubernetes-documentation/' + link;
     if (fragment) href += '#' + fragment;
     a.setAttribute('href', href);
     a.removeAttribute('routerLink');
@@ -286,6 +286,40 @@ function initMobileSidebar() {
   });
 }
 
+/* ---- Navigation Click Handler ---- */
+
+function handleNavClick(e) {
+  var a = e.target.closest('a');
+  if (!a) return;
+  var href = a.getAttribute('href');
+  if (!href || !href.startsWith('/kubernetes-documentation/')) return;
+
+  e.preventDefault();
+  // Extract path (without base prefix and hash fragment)
+  var hashIdx = href.indexOf('#');
+  var path = (hashIdx === -1 ? href : href.substring(0, hashIdx)).replace('/kubernetes-documentation/', '') || '';
+  var fragment = hashIdx !== -1 ? href.substring(hashIdx + 1) : null;
+
+  // Same page — just scroll to fragment
+  if (path === currentPage && fragment) {
+    window.history.pushState(null, '', href);
+    var el = document.getElementById(fragment);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
+
+  window.history.pushState(null, '', href);
+  loadPage(path);
+
+  // Scroll to fragment after page load
+  if (fragment) {
+    setTimeout(function() {
+      var el = document.getElementById(fragment);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 200);
+  }
+}
+
 /* ---- Init ---- */
 
 window.addEventListener('hashchange', function() {
@@ -299,4 +333,12 @@ window.addEventListener('popstate', function() {
 document.addEventListener('DOMContentLoaded', function() {
   initMobileSidebar();
   loadPage(getRoute());
+
+  // Intercept navigation clicks for clean-path pushState
+  var sidebar = document.getElementById('sidebar');
+  var bottomNav = document.getElementById('bottom-nav');
+  var content = document.getElementById('content');
+  if (sidebar) sidebar.addEventListener('click', handleNavClick);
+  if (bottomNav) bottomNav.addEventListener('click', handleNavClick);
+  if (content) content.addEventListener('click', handleNavClick);
 });
