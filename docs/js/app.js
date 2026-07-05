@@ -7,17 +7,24 @@ let currentPage = '';
 /* ---- Routing ---- */
 
 function getRoute() {
-  // Hash routing (internal navigation via sidebar links)
+  // Hash routing (internal navigation via sidebar links or 404 redirect)
   var hash = window.location.hash.replace(/^#/, '');
   if (hash) {
+    // Only treat as route if it starts with / — plain fragments are page anchors
+    if (!hash.startsWith('/')) {
+      // Fall through to pathname routing
+      if (window.location.pathname.startsWith('/kubernetes-documentation/')) {
+        return window.location.pathname.slice('/kubernetes-documentation/'.length).replace(/^\/?/, '') || '';
+      }
+      return '';
+    }
     var fragIdx = hash.indexOf('#');
     if (fragIdx !== -1) hash = hash.substring(0, fragIdx);
     return hash.replace(/^\/?/, '') || '';
   }
   // Path routing (direct visit or 404 redirect via clean URL)
-  var base = '/kubernetes-documentation/';
-  if (window.location.pathname.startsWith(base)) {
-    return window.location.pathname.slice(base.length).replace(/^\/?/, '') || '';
+  if (window.location.pathname.startsWith('/kubernetes-documentation/')) {
+    return window.location.pathname.slice('/kubernetes-documentation/'.length).replace(/^\/?/, '') || '';
   }
   return '';
 }
@@ -182,6 +189,8 @@ async function loadPage(path) {
     // Convert hash URL to clean URL after first load (from 404 redirect)
     if (window.location.hash && window.location.hash.startsWith('#/')) {
       var clean = '/kubernetes-documentation/' + path;
+      var frag = getTargetFragment();
+      if (frag) clean += '#' + frag;
       window.history.replaceState(null, '', clean);
     }
 
@@ -329,7 +338,8 @@ function handleNavClick(e) {
 /* ---- Init ---- */
 
 window.addEventListener('hashchange', function() {
-  if (window.location.hash) {
+  // Only handle route hashes (#/path), not page fragments (#anchor)
+  if (window.location.hash && window.location.hash.startsWith('#/')) {
     loadPage(getRoute());
   }
 });
