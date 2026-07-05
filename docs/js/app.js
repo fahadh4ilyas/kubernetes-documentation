@@ -372,11 +372,6 @@ document.addEventListener('DOMContentLoaded', function() {
   initMobileSidebar();
   loadPage(getRoute());
 
-  // Intercept navigation clicks for clean-path pushState
-  var sidebar = document.getElementById('sidebar');
-  var bottomNav = document.getElementById('bottom-nav');
-  var content = document.getElementById('content');
-  if (sidebar) sidebar.addEventListener('click', handleNavClick);
-  if (bottomNav) bottomNav.addEventListener('click', handleNavClick);
-  if (content) content.addEventListener('click', handleNavClick);
+  // Intercept all navigation clicks for clean-path pushState
+  document.addEventListener('click', handleNavClick);
 });
