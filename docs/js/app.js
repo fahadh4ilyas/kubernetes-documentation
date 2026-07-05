@@ -179,6 +179,12 @@ async function loadPage(path) {
     renderBottomNav(path);
     updatePageTitle(path);
 
+    // Convert hash URL to clean URL after first load (from 404 redirect)
+    if (window.location.hash && window.location.hash.startsWith('#/')) {
+      var clean = '/kubernetes-documentation/' + path;
+      window.history.replaceState(null, '', clean);
+    }
+
   } catch (e) {
     contentEl.innerHTML = `<div id='write'><h2>404 — Halaman tidak ditemukan</h2></div>`;
     renderSidebar('');
@@ -323,7 +329,9 @@ function handleNavClick(e) {
 /* ---- Init ---- */
 
 window.addEventListener('hashchange', function() {
-  loadPage(getRoute());
+  if (window.location.hash) {
+    loadPage(getRoute());
+  }
 });
 
 window.addEventListener('popstate', function() {
