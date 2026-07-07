@@ -127,12 +127,14 @@ function cleanCodeMirror(container, pagePath) {
   container.querySelectorAll('a[routerLink]').forEach(a => {
     let link = a.getAttribute('routerLink') || '';
     const fragment = a.getAttribute('fragment');
+    const isAbsolute = link.startsWith('/');
 
     // Strip leading/trailing slashes
     link = link.replace(/^\/+|\/+$/g, '');
 
     // If link is relative (doesn't include the section name), resolve it
-    if (basePath && !link.startsWith(basePath.split('/')[0])) {
+    // Only resolve if NOT an absolute path
+    if (!isAbsolute && basePath && !link.startsWith(basePath.split('/')[0])) {
       link = basePath + '/' + link;
     }
 
