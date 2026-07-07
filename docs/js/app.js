@@ -129,6 +129,9 @@ function cleanCodeMirror(container, pagePath) {
     const fragment = a.getAttribute('fragment');
     const isAbsolute = link.startsWith('/');
 
+    // Strip /kubernetes-documentation/ prefix if already present
+    link = link.replace(/^\/kubernetes-documentation\//, '/');
+
     // Strip leading/trailing slashes
     link = link.replace(/^\/+|\/+$/g, '');
 
