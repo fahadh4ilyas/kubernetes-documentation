@@ -147,10 +147,19 @@ function cleanCodeMirror(container, pagePath) {
     a.removeAttribute('routerLink');
   });
 
-  // Fix md-toc-inner links that use routerLink on parent
+  // Fix md-toc-inner links — convert #fragment links to proper paths
   container.querySelectorAll('.md-toc-inner').forEach(a => {
-    if (a.getAttribute('href') && a.getAttribute('href').startsWith('#')) return;
-    // These are already handled by the parent a[routerLink]
+    var href = a.getAttribute('href');
+    if (!href || !href.startsWith('#')) return;
+    var fragment = href.slice(1).replace(/--/g, '-');
+    if (basePath) {
+      fragment = basePath + '/' + fragment;
+    } else if (!PAGE_MAP[fragment]) {
+      for (var key in PAGE_MAP) {
+        if (key.endsWith('/' + fragment)) { fragment = key; break; }
+      }
+    }
+    a.setAttribute('href', '/kubernetes-documentation/' + fragment);
   });
 }
 
