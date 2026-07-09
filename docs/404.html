@@ -7,10 +7,9 @@
     // Redirect 404 to root with path as hash
     // /kubernetes-documentation/menyiapkan-kubernetes/1-memasang-kubernetes
     // → /kubernetes-documentation/#/menyiapkan-kubernetes/1-memasang-kubernetes
-    var segments = window.location.pathname.split('/');
-    // segments: ['', 'kubernetes-documentation', 'menyiapkan-kubernetes', '1-memasang-kubernetes']
-    var base = segments.slice(0, 2).join('/');           // '/kubernetes-documentation'
-    var rest = segments.slice(2).join('/');               // 'menyiapkan-kubernetes/1-memasang-kubernetes'
+    var segments = window.location.pathname.split('/').filter(function(s) { return s !== ''; });
+    var base = '/' + segments[0];                         // '/kubernetes-documentation'
+    var rest = segments.slice(1).join('/');               // 'menyiapkan-kubernetes/1-memasang-kubernetes'
     window.location.replace(
       window.location.protocol + '//' + window.location.host +
       base + '/#/' + rest +
