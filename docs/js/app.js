@@ -155,8 +155,32 @@ function cleanCodeMirror(container, pagePath) {
     if (basePath) {
       fragment = basePath + '/' + fragment;
     } else if (!PAGE_MAP[fragment]) {
+      var found = false;
       for (var key in PAGE_MAP) {
-        if (key.endsWith('/' + fragment)) { fragment = key; break; }
+        if (key.endsWith('/' + fragment)) { fragment = key; found = true; break; }
+      }
+      if (!found) {
+        var item = a.closest('.md-toc-item');
+        if (item && item.classList.contains('md-toc-h4')) {
+          var prev = item.previousElementSibling;
+          while (prev) {
+            if (prev.classList.contains('md-toc-h3')) {
+              var parentLink = prev.querySelector('.md-toc-inner');
+              if (parentLink) {
+                var parentFrag = parentLink.getAttribute('href').slice(1).replace(/--/g, '-');
+                if (PAGE_MAP[parentFrag]) {
+                  fragment = parentFrag;
+                } else {
+                  for (var k in PAGE_MAP) {
+                    if (k.endsWith('/' + parentFrag)) { fragment = k; break; }
+                  }
+                }
+              }
+              break;
+            }
+            prev = prev.previousElementSibling;
+          }
+        }
       }
     }
     a.setAttribute('href', '/kubernetes-documentation/' + fragment);
