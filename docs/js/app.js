@@ -152,35 +152,37 @@ function cleanCodeMirror(container, pagePath) {
     var href = a.getAttribute('href');
     if (!href || !href.startsWith('#')) return;
     var fragment = href.slice(1).replace(/--/g, '-');
+
+    // h4 TOC items resolve to parent h3 page with fragment
+    var item = a.closest('.md-toc-item');
+    if (item && item.classList.contains('md-toc-h4')) {
+      var prev = item.previousElementSibling;
+      while (prev) {
+        if (prev.classList.contains('md-toc-h3')) {
+          var parentLink = prev.querySelector('.md-toc-inner');
+          if (parentLink) {
+            var parentFrag = parentLink.getAttribute('href').slice(1).replace(/--/g, '-');
+            var pagePath = basePath ? basePath + '/' + parentFrag : parentFrag;
+            if (!PAGE_MAP[pagePath]) {
+              for (var k in PAGE_MAP) {
+                if (k.endsWith('/' + parentFrag)) { pagePath = k; break; }
+              }
+            }
+            a.setAttribute('href', '/kubernetes-documentation/' + pagePath + '#' + fragment);
+          }
+          break;
+        }
+        prev = prev.previousElementSibling;
+      }
+      return;
+    }
+
+    // h2/h3 TOC items
     if (basePath) {
       fragment = basePath + '/' + fragment;
     } else if (!PAGE_MAP[fragment]) {
-      var found = false;
       for (var key in PAGE_MAP) {
-        if (key.endsWith('/' + fragment)) { fragment = key; found = true; break; }
-      }
-      if (!found) {
-        var item = a.closest('.md-toc-item');
-        if (item && item.classList.contains('md-toc-h4')) {
-          var prev = item.previousElementSibling;
-          while (prev) {
-            if (prev.classList.contains('md-toc-h3')) {
-              var parentLink = prev.querySelector('.md-toc-inner');
-              if (parentLink) {
-                var parentFrag = parentLink.getAttribute('href').slice(1).replace(/--/g, '-');
-                if (PAGE_MAP[parentFrag]) {
-                  fragment = parentFrag;
-                } else {
-                  for (var k in PAGE_MAP) {
-                    if (k.endsWith('/' + parentFrag)) { fragment = k; break; }
-                  }
-                }
-              }
-              break;
-            }
-            prev = prev.previousElementSibling;
-          }
-        }
+        if (key.endsWith('/' + fragment)) { fragment = key; break; }
       }
     }
     a.setAttribute('href', '/kubernetes-documentation/' + fragment);
